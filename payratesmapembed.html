@@ -20,7 +20,7 @@
             
             // Create a viz object and embed it in the container div.
             viz = new tableau.Viz(containerDiv, url, options); 
-            paramObjs = currentViz.getWorkbook().getParametersAsync();
+            paramObjs = viz.getWorkbook().getParametersAsync();
             paramObjs.then(function(paramObjs) {
                 for (var i = 0; i < paramObjs.length; i++) {
                     try {

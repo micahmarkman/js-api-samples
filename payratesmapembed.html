@@ -14,22 +14,22 @@
                 options = {
                     hideTabs: true,
                     onFirstInteractive: function () {
+                        paramObjs = viz.getWorkbook().getParametersAsync();
+                        paramObjs.then(function(paramObjs) {
+                            for (var i = 0; i < paramObjs.length; i++) {
+                                try {
+                                    var name = paramObjs[i].getName();
+                                    var value = paramObjs[i].getCurrentValue();
+                                    params[name] = value.value;
+                                } catch (e) { }
+                            }
+                        });
                         console.log("Run this code when the viz has finished loading.");
                     }
                 };
             
             // Create a viz object and embed it in the container div.
             viz = new tableau.Viz(containerDiv, url, options); 
-            paramObjs = viz.getWorkbook().getParametersAsync();
-            paramObjs.then(function(paramObjs) {
-                for (var i = 0; i < paramObjs.length; i++) {
-                    try {
-                        var name = paramObjs[i].getName();
-                        var value = paramObjs[i].getCurrentValue();
-                        params[name] = value.value;
-                    } catch (e) { }
-                }
-            });
             
         }
     </script>

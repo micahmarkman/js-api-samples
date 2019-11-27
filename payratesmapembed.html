@@ -6,6 +6,7 @@
     
     <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
     <script type="text/javascript">
+        var viz;
         function initViz() {
             var containerDiv = document.getElementById("vizContainer"),
                 url = "https://public.tableau.com/views/payratemap_withallkeyelements/nationwide_map?:display_count=n&:origin=viz_share_link",
@@ -17,7 +18,7 @@
                 };
             
             // Create a viz object and embed it in the container div.
-            var viz = new tableau.Viz(containerDiv, url, options); 
+            viz = new tableau.Viz(containerDiv, url, options); 
         }
     </script>
 </head>

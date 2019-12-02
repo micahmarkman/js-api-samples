@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Respond to Events</title>
+    
+    <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    
+    <script type="text/javascript">
+        var viz;
+        
+        function initViz() {
+            var containerDiv = document.getElementById("vizContainer"),
+                url = "https://public.tableau.com/views/ResponseRatePrototype5/Federal",
+                options = {
+                    onFirstInteractive: function () {
+                        addVizEventListeners();
+                    }
+                };
+            
+            viz = new tableau.Viz(containerDiv, url, options);
+        }
+
+        function addVizEventListeners() {
+            viz.addEventListener(tableau.TableauEventName.FILTER_CHANGE, onFilterChange);
+        }
+
+        function onFilterChange(filterChangeEvent) {
+            return filterChangeEvent.getFilterAsync().then(reportFilterChange);
+        }
+
+        function reportFilterChange(updatedFilter) {
+            console.log("Filter Changed");
+        }
+
+    </script>
+</head>
+
+<body onload="initViz();">
+    <div id="vizContainer"></div>
+    <br>
+    <div id="markDetails">Information about selected filters displays here.</div>
+</body>
+
+</html>
+
